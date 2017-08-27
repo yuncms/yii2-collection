@@ -68,7 +68,7 @@ if (!Yii::$app->user->isGuest && Yii::$app->user->id == $model->id) {//Me
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemOptions' => $itemOptions,
-        'itemView' => '_collected',//子视图
+        'itemView' => '_item',//子视图
         'viewParams' => ['type' => $type],
         'layout' => "{items}\n{pager}",
         'options' =>$options
