@@ -44,7 +44,7 @@ class CollectionController extends Controller
                     ],
                 ],
                 'denyCallback' => function ($rule, $action) {
-                    throw new UnauthorizedHttpException(Yii::t('user', 'The request has not been applied because it lacks valid authentication credentials for the target resource.'));
+                    throw new UnauthorizedHttpException(Yii::t('collection', 'The request has not been applied because it lacks valid authentication credentials for the target resource.'));
                 }
             ],
         ];
