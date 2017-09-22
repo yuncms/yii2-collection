@@ -66,7 +66,7 @@ class CollectionController extends Controller
 
         if ($model == 'user') {
             $source = User::find()->with('extend')->where(['id' => $modelId])->one();
-            $subject = $source->username;
+            $subject = $source->nickname;
         } else if ($model == 'question' && Yii::$app->hasModule('question')) {
             $source = \yuncms\question\models\Question::findOne($modelId);
             $subject = $source->title;
