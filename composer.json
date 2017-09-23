@@ -2,7 +2,9 @@
   "name": "yuncms/yii2-collection",
   "description": "collection",
   "keywords": [
-    "collection","yii2","yii2-module"
+    "collection",
+    "yii2",
+    "yii2-module"
   ],
   "type": "yii2-extension",
   "license": "MIT",
@@ -25,12 +27,12 @@
     "yuncms": {
       "name": "collection",
       "i18n": {
-        "class":"yii\\i18n\\PhpMessageSource",
-        "basePath":"@yuncms/collection/message"
+        "class": "yii\\i18n\\PhpMessageSource",
+        "sourceLanguage": "en-US",
+        "basePath": "@yuncms/collection/message"
       },
       "migrationNamespace": "yuncms\\collection\\migrations",
       "backend": {
-
       },
       "frontend": {
         "class": "yuncms\\collection\\frontend\\Module"
