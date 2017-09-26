@@ -15,6 +15,7 @@ use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\web\UnauthorizedHttpException;
 use yuncms\collection\models\Collection;
+use yuncms\credit\jobs\CreditJobs;
 use yuncms\user\jobs\UpdateExtEndCounterJob;
 use yuncms\user\models\User;
 
@@ -110,6 +111,10 @@ class CollectionController extends Controller
         if ($collect) {
             if ($model == 'user') {
                 Yii::$app->queue->push(new UpdateExtEndCounterJob(['user_id' => $model->id, 'field' => 'collections', 'counter' => 1]));
+            } elseif ($model == 'article') {
+                //文章被搜索
+                //Yii::$app->queue->push(new CreditJobs(''));
+                $source->updateCounters(['collections' => 1]);
             } else {
                 $source->updateCounters(['collections' => 1]);
             }
