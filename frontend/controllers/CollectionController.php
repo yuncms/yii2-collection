@@ -15,6 +15,7 @@ use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\web\UnauthorizedHttpException;
 use yuncms\collection\models\Collection;
+use yuncms\user\jobs\UpdateExtEndCounterJob;
 use yuncms\user\models\User;
 
 /**
@@ -90,7 +91,7 @@ class CollectionController extends Controller
         if ($userCollect) {
             $userCollect->delete();
             if ($model == 'user') {
-                $source->extend->updateCounters(['collections' => -1]);
+                Yii::$app->queue->push(new UpdateExtEndCounterJob(['user_id' => $model->id, 'field' => 'collections', 'counter' => -1]));
             } else {
                 $source->updateCounters(['collections' => -1]);
             }
@@ -108,7 +109,7 @@ class CollectionController extends Controller
         $collect = Collection::create($data);
         if ($collect) {
             if ($model == 'user') {
-                $source->extend->updateCounters(['collections' => 1]);
+                Yii::$app->queue->push(new UpdateExtEndCounterJob(['user_id' => $model->id, 'field' => 'collections', 'counter' => 1]));
             } else {
                 $source->updateCounters(['collections' => 1]);
             }

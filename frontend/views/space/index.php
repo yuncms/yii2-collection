@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ListView;
@@ -9,6 +10,7 @@ use yuncms\user\models\User;
  * @var \yii\web\View $this
  * @var  User $model
  * @var string $type
+ * @var \yii\data\ActiveDataProvider $dataProvider
  */
 $this->context->layout = '@yuncms/user/frontend/views/layouts/space';
 $this->params['user'] = $model;
@@ -71,7 +73,7 @@ if (!Yii::$app->user->isGuest && Yii::$app->user->id == $model->id) {//Me
         'itemView' => '_item',//子视图
         'viewParams' => ['type' => $type],
         'layout' => "{items}\n{pager}",
-        'options' =>$options
+        'options' => $options
     ]); ?>
 </div>
 
