@@ -25,7 +25,7 @@ class M170827063332Create_collection_table extends Migration
          */
         $this->createTable('{{%collections}}', [
             'id' => $this->primaryKey(),
-            'user_id' => $this->integer()->notNull(),
+            'user_id' => $this->integer()->unsigned()->notNull(),
             'model_id' => $this->integer()->notNull(),
             'model' => $this->string()->notNull(),
             'subject' => $this->string(),
