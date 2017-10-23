@@ -8,19 +8,32 @@ namespace yuncms\collection;
 
 
 use Yii;
+use yii\base\InvalidConfigException;
 
 /**
  * Class Module
+ *
+ * @property array $models
  * @package yuncms\credit
  */
 class Module extends \yii\base\Module
 {
+    /**
+     * Matching models with integer id's
+     * @var array
+     */
+    public $models;
+
     /**
      * 初始化
      */
     public function init()
     {
         parent::init();
+        parent::init();
+        if (!isset($this->models)) {
+            throw new InvalidConfigException('models not configurated');
+        }
         $this->registerTranslations();
     }
 

@@ -51,6 +51,25 @@ class Collection extends ActiveRecord
     }
 
     /**
+     *
+     * @param string $model Name of model
+     * @return integer|false Id corresponding model or false if matches not found
+     */
+    public static function getNameByModel($model)
+    {
+        if (null !== $models = Yii::$app->getModule('collection')->models) {
+            foreach ($models as $key => $value) {
+                if (is_string($value) && $value == $model) {
+                    return $key;
+                } else if ((is_array($value) && isset($value['model'])) && $value['model'] == $model) {
+                    return $key;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * @return \yii\db\ActiveQueryInterface
      */
     public function getUser()
